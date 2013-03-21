@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ -f "$3/private/var/db/.AccessibilityAPIEnabled" ]; then
+	echo "Accessibility already enabled"
+else
+	echo "Enabling Accessibility"
+	echo -n "a" > "$3/private/var/db/.AccessibilityAPIEnabled"
+	chmod 444 "$3/private/var/db/.AccessibilityAPIEnabled"
+fi
+
+exit
+
