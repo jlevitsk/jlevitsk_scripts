@@ -1,7 +1,7 @@
 #!/bin/sh
 ##########################################################
 #
-# Common Problem Repair System (CPRs)
+# Common Problem Repair system (CPRs)
 # A simple creation by Josh Levitsky <josh@joshie.com>
 # Feel free to take my ideas and use them if they work.
 # You need to reboot after this script because you will be unstable
