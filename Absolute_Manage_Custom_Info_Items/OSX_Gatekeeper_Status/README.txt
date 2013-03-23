@@ -1,0 +1,1 @@
+This is an exported Absolute Manage information item. You can either import the lanrev item or use the script.sh for some other purpose.

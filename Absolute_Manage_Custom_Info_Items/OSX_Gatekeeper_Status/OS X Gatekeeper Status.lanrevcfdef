@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CustomFields</key>
+	<array>
+		<dict>
+			<key>AutoAssignToAllMachines</key>
+			<integer>1</integer>
+			<key>DataType</key>
+			<integer>1</integer>
+			<key>Description</key>
+			<string></string>
+			<key>DeviceType</key>
+			<integer>1</integer>
+			<key>DisplayType</key>
+			<integer>1</integer>
+			<key>EvaluationMethod</key>
+			<integer>1</integer>
+			<key>ExecuteOnlyWithFullInventory</key>
+			<false/>
+			<key>FieldID</key>
+			<string>CCEA3423-8DA7-416D-8B66-02B72DAC2FF1</string>
+			<key>Mac</key>
+			<dict>
+				<key>ActionID</key>
+				<string>35A5D2FA-E8C6-4E64-B8AF-A86E09CADD9A</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>1</integer>
+				<key>Name</key>
+				<string>OS X Gatekeeper Status</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>1</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string>#!/bin/bash
+
+osvers=$(sw_vers -productVersion | awk -F. '{print $2}')
+
+if [[ ${osvers} -lt 7 ]]; then
+  echo "Gatekeeper Not Available For This Version Of Mac OS X"
+fi
+
+if [[ ${osvers} -ge 9 ]]; then
+  echo "Future Not Known Yet. Revise Me In Mid-2013"
+fi
+
+# Checks Gatekeeper status on 10.7.x Macs
+
+if [[ ${osvers} -eq 7 ]]; then
+    gatekeeper_status=`spctl --status | grep "assessments" | cut -c13-`
+   if [ $gatekeeper_status = "disabled" ]; then
+      result=Disabled
+   else
+      result=Active
+   fi
+   echo $result
+fi
+
+# Checks Gatekeeper status on 10.8.x Macs
+
+if [[ ${osvers} -eq 8 ]]; then
+    gatekeeper_status=`spctl --status | grep "assessments" | cut -c13-`
+   if [ $gatekeeper_status = "disabled" ]; then
+      result=Disabled
+   else
+      result=Active
+   fi
+   echo $result
+fi</string>
+				<key>Seed</key>
+				<integer>1</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>1</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>2</integer>
+			</dict>
+			<key>Name</key>
+			<string>OS X Gatekeeper Status</string>
+			<key>ReplaceLineFeeds</key>
+			<true/>
+			<key>ReturnExecutionErrors</key>
+			<false/>
+			<key>Seed</key>
+			<integer>1</integer>
+			<key>VariableName</key>
+			<string></string>
+			<key>Win</key>
+			<dict>
+				<key>ActionID</key>
+				<string>FF4BA053-F45A-48EC-84A5-0CE8D638F686</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>0</integer>
+				<key>Name</key>
+				<string>OS X Gatekeeper Status</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>2</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string></string>
+				<key>Seed</key>
+				<integer>1</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>0</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>1</integer>
+			</dict>
+		</dict>
+	</array>
+	<key>Date</key>
+	<date>2013-02-09T13:55:05Z</date>
+	<key>Version</key>
+	<integer>1</integer>
+</dict>
+</plist>

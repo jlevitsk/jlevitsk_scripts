@@ -1,0 +1,1 @@
+This is an exported Absolute Manage information item. It will tell you if your user has Outlook in cached mode connected to an Exchange mailbox.

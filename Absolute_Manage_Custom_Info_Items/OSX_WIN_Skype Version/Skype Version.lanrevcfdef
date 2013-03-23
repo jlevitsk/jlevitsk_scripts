@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CustomFields</key>
+	<array>
+		<dict>
+			<key>AutoAssignToAllMachines</key>
+			<integer>1</integer>
+			<key>DataType</key>
+			<integer>1</integer>
+			<key>Description</key>
+			<string>Version and use info on Skype</string>
+			<key>DeviceType</key>
+			<integer>1</integer>
+			<key>DisplayType</key>
+			<integer>1</integer>
+			<key>EvaluationMethod</key>
+			<integer>1</integer>
+			<key>ExecuteOnlyWithFullInventory</key>
+			<false/>
+			<key>FieldID</key>
+			<string>0DBD18A3-0B48-4C26-A417-54C2F1951183</string>
+			<key>Mac</key>
+			<dict>
+				<key>ActionID</key>
+				<string>8D105565-053E-4BA0-B9D2-66A068063DFF</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>1</integer>
+				<key>Name</key>
+				<string>Skype Version</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>1</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string>#!/bin/sh
+
+#test for spotlight to be running
+G=0
+while [ "$G" -le "60" ] &amp;&amp; [ ! "$myspot" ]; do
+     G=$[G+1]
+     myspot=`ps -axw | grep "/Support/mds" | grep -v "grep"`
+     sleep 5
+done
+
+if [ $G -gt "59" ] ; then
+  echo "Spotlight issue."
+  exit 0
+fi
+
+#test for Skype Client
+result=`mdfind "kMDItemFSName == '*Skype*' &amp;&amp; kMDItemKind == 'Application'" | grep -v  "IPC_LEOPARD_IMPORTER.app" | grep -v ".Trash" | sed 's/ /%/g'`
+
+#set a variable to hold all results
+N=0
+
+for listitem in $result
+do
+    N=$[N+1]
+done
+
+if [ $N -gt "1" ] ; then
+    echo "Multiple Results ($N),"
+fi
+
+for listitem in $result
+do
+    myresult=`echo $listitem | sed 's/%/ /g'` 
+    version=`mdls -name kMDItemVersion "$myresult" | sed 's/"//g' | tail -n 1 | awk -F"= " '{ print $2 }' `
+    lastrun=`mdls -name kMDItemLastUsedDate "$myresult" | tail -n 1 | awk -F"= " '{ print $2 }' | awk -F" " '{ print $1 }' ` 
+    echo "$version, $lastrun, $myresult;"
+done
+
+exit 0
+</string>
+				<key>Seed</key>
+				<integer>3</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>1</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>2</integer>
+			</dict>
+			<key>Name</key>
+			<string>Skype Version</string>
+			<key>ReplaceLineFeeds</key>
+			<true/>
+			<key>ReturnExecutionErrors</key>
+			<false/>
+			<key>Seed</key>
+			<integer>8</integer>
+			<key>VariableName</key>
+			<string></string>
+			<key>Win</key>
+			<dict>
+				<key>ActionID</key>
+				<string>D4960559-530D-460A-BC70-F374D3BA733C</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>3</integer>
+				<key>Name</key>
+				<string>Skype Version</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>2</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string>Dim WSHShell,strRegKey,myfile
+Set WSHShell = WScript.CreateObject("WScript.Shell")
+strRegKey="HKLM\Software\Skype\Phone\SkypePath"
+on error resume next
+if err.number &lt;&gt; 0 then
+	wscript.quit
+end if
+myfile = WSHShell.RegRead(strRegKey)
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Wscript.Echo objFSO.GetFileVersion(myfile)</string>
+				<key>Seed</key>
+				<integer>3</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>1</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>2</integer>
+			</dict>
+		</dict>
+	</array>
+	<key>Date</key>
+	<date>2013-02-09T13:50:26Z</date>
+	<key>Version</key>
+	<integer>1</integer>
+</dict>
+</plist>

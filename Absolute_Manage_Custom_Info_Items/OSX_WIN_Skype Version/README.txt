@@ -1,0 +1,1 @@
+This is an exported Absolute Manage information item. It contains both a vbScript for Windows and a shell script for the Mac to give you the version of Skype installed.

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CustomFields</key>
+	<array>
+		<dict>
+			<key>AutoAssignToAllMachines</key>
+			<integer>1</integer>
+			<key>DataType</key>
+			<integer>1</integer>
+			<key>Description</key>
+			<string>Displays whether Cached Mode is enabled or disabled</string>
+			<key>DeviceType</key>
+			<integer>1</integer>
+			<key>DisplayType</key>
+			<integer>1</integer>
+			<key>EvaluationMethod</key>
+			<integer>1</integer>
+			<key>ExecuteOnlyWithFullInventory</key>
+			<false/>
+			<key>FieldID</key>
+			<string>9BE117CA-6112-4A1E-B3F2-EE603239C7B8</string>
+			<key>Mac</key>
+			<dict>
+				<key>ActionID</key>
+				<string>22327E24-08B5-4F2B-9BC2-A5AE380423BE</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>0</integer>
+				<key>Name</key>
+				<string>Outlook Cached Mode</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>1</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string></string>
+				<key>Seed</key>
+				<integer>1</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>0</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>1</integer>
+			</dict>
+			<key>Name</key>
+			<string>Outlook Cached Mode</string>
+			<key>ReplaceLineFeeds</key>
+			<true/>
+			<key>ReturnExecutionErrors</key>
+			<false/>
+			<key>Seed</key>
+			<integer>12</integer>
+			<key>VariableName</key>
+			<string></string>
+			<key>Win</key>
+			<dict>
+				<key>ActionID</key>
+				<string>A36EDCF8-255E-4CEB-B0D3-E0C8D67BA01D</string>
+				<key>ExecutableOptions</key>
+				<string></string>
+				<key>ExecutablePartialPath</key>
+				<string></string>
+				<key>ExecutableTypeSelector</key>
+				<integer>4</integer>
+				<key>Name</key>
+				<string>Outlook Cached Mode</string>
+				<key>PListDomain</key>
+				<string></string>
+				<key>PListKey</key>
+				<string></string>
+				<key>PListLocationSelector</key>
+				<integer>1</integer>
+				<key>Platform</key>
+				<integer>2</integer>
+				<key>RegistryPath</key>
+				<string></string>
+				<key>RequiresAdminPrivileges</key>
+				<integer>0</integer>
+				<key>ScriptText</key>
+				<string>@echo off
+
+set path=C:\windows\system32;%path%
+for /f "delims=" %%a in ('reg query "HKU" ^| find /v "S-1-5-19" ^| find /v "S-1-5-18" ^| find /v "S-1-5-20" ^| find /v ".DEFAULT" ^| find/v "_Classes" ^| find /v "1801674531-75732" ^| find /v "REG.EXE" ^| find /i "S-1-5-21"') do @call :_run "%%a"
+echo %cachedmode%
+exit
+
+:_run
+set var=%1
+set var=%var:~1,-1%
+reg query "%var%\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles" /v "DefaultProfile"&gt;nul 2&gt;&amp;1
+if "%errorlevel%"=="1" ((echo No Outlook Profile) &amp;&amp; exit)
+for /f "delims=" %%a in ('reg query "%var%\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles" /v "DefaultProfile"') do @set profile=%%a
+if exist "C:\windows\syswow64" (set profile=%profile:~32%) else (set profile=%profile:~26%)
+for /f "delims=" %%a in ('reg query "%var%\Software\Microsoft\Windows NT\CurrentVersion\Windows Messaging Subsystem\Profiles\%profile%" /s ^| find "00036601"') do @set cachedmode=%%a
+if exist "C:\windows\syswow64" (set cachedmode=%cachedmode:~30%) else (set cachedmode=%cachedmode:~24%)
+if "%cachedmode%"=="04100000" ((echo Disabled) &amp;&amp; exit)
+if "%cachedmode%"=="84190000" ((echo Enabled) &amp;&amp; exit)
+if "%cachedmode%"=="84050000" ((echo Enabled Public) &amp;&amp; exit)
+if "%cachedmode%"=="84010000" ((echo Enabled) &amp;&amp; exit)
+if "%cachedmode%"=="04000000" ((echo Disabled) &amp;&amp; exit)
+if "%cachedmode%"=="84190000" ((echo Enabled) &amp;&amp; exit)
+if "%cachedmode%"=="04100000" ((echo Disabled) &amp;&amp; exit)
+if "%cachedmode%"=="94190000" ((echo Enabled) &amp;&amp; exit)
+if "%cachedmode%"=="14100000" ((echo Disabled) &amp;&amp; exit)
+goto :EOF</string>
+				<key>Seed</key>
+				<integer>12</integer>
+				<key>SourceFile</key>
+				<string></string>
+				<key>SourceFileChecksum</key>
+				<string></string>
+				<key>SourceTypeSelector</key>
+				<integer>1</integer>
+				<key>TransferExecutableFolder</key>
+				<integer>0</integer>
+				<key>UserContext</key>
+				<string></string>
+				<key>UserContextPassword</key>
+				<string></string>
+				<key>UserContextSelector</key>
+				<integer>2</integer>
+			</dict>
+		</dict>
+	</array>
+	<key>Date</key>
+	<date>2013-02-09T20:09:26Z</date>
+	<key>Version</key>
+	<integer>1</integer>
+</dict>
+</plist>
