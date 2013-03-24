@@ -3,6 +3,7 @@
 ################
 #
 # Joshies Nav Updater
+# josh@joshie.com
 # 2005050101
 #
 #################
@@ -34,7 +35,7 @@ if [ $en0status ] || [ $en1status ]; then
 	N=0
 	while [ "$N" -le "60" ] && [ "$network" != "Reachable" ]; do
 		N=$[N+1]
-		network=`/usr/sbin/scutil -r liveupdate.timeinc.com`
+		network=`/usr/sbin/scutil -r liveupdate.mycompany.com`
 		sleep 10
 	done
 
@@ -57,5 +58,5 @@ if [ $en0status ] || [ $en1status ]; then
 	exit 0
 fi
 
-$logger "There was no connection available to liveupdate.timeinc.com"
+$logger "There was no connection available to liveupdate.mycompany.com"
 exit 0

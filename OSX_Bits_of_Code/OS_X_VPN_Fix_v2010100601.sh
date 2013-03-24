@@ -3,7 +3,7 @@
 ###############
 # 
 # This app will fix VPN addresses on Macs 
-# Created by Joshua Levitsky <jlevitsk@joshie.com>
+# Created by Joshua Levitsky <josh@joshie.com>
 # Revision 2010100601
 #
 ##################
@@ -24,11 +24,11 @@ foreach d ( * )
   # we need to eliminate Internet cache files from it.
 	echo Fixing VPN Profiles in $d...
 
-	sed s/64.236.246.210/nycvpn.timeinc.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d > /private/etc/opt/cisco-vpnclient/Profiles/$d.1
-	sed s/64.236.226.14/tmpvpn.timeinc.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.1 > /private/etc/opt/cisco-vpnclient/Profiles/$d.2
-	sed s/64.236.227.160/lonvpn.timeinc.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.2 > /private/etc/opt/cisco-vpnclient/Profiles/$d.3
-	sed s/64.236.80.138/lonvpn.timeinc.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.3 > /private/etc/opt/cisco-vpnclient/Profiles/$d.4
-	sed s/202.130.154.118/hkvpn.timeinc.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.4 > /private/etc/opt/cisco-vpnclient/Profiles/$d.5
+	sed s/64.210.246.210/nycvpn.mycompany.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d > /private/etc/opt/cisco-vpnclient/Profiles/$d.1
+	sed s/64.210.226.14/tmpvpn.mycompany.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.1 > /private/etc/opt/cisco-vpnclient/Profiles/$d.2
+	sed s/64.210.227.160/lonvpn.mycompany.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.2 > /private/etc/opt/cisco-vpnclient/Profiles/$d.3
+	sed s/64.210.80.138/lonvpn.mycompany.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.3 > /private/etc/opt/cisco-vpnclient/Profiles/$d.4
+	sed s/202.130.154.118/hkvpn.mycompany.com/g  /private/etc/opt/cisco-vpnclient/Profiles/$d.4 > /private/etc/opt/cisco-vpnclient/Profiles/$d.5
 	
 		
 	rm /private/etc/opt/cisco-vpnclient/Profiles/$d

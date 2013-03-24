@@ -2,7 +2,7 @@
 
 ###############
 # 
-# This app will fix homepages and bookmarks from www.timeinc.com to www.timetraveler.com 
+# This app will fix homepages and bookmarks from www.mycompany.com to www.mycompanyNEWSITE.com 
 # default user profiles as well. 
 # Created by Joshua Levitsky <jlevitsk@joshie.com>
 # Revision 2007090701
@@ -41,7 +41,7 @@ foreach d ( * )
 		cp -f /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist.bak 
 		plutil -convert xml1 /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist.bak
 		unlink /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist
-		sed s/www.timeinc.com/www.timetraveler.com/g  /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist.bak > /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist
+		sed s/www.mycompany.com/www.mycompanyNEWSITE.com/g  /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist.bak > /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist
 		chown $d /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist
 		chmod 600 /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist
 		unlink /Users/$d/Library/Preferences/com.apple.internetconfigpriv.plist.bak
@@ -52,7 +52,7 @@ foreach d ( * )
 			cp -f /Users/$d/Library/Safari/Bookmarks.plist /Users/$d/Library/Safari/Bookmarks.plist.bak
 			plutil -convert xml1 /Users/$d/Library/Safari/Bookmarks.plist.bak
 			unlink /Users/$d/Library/Safari/Bookmarks.plist
-			sed s/www.timeinc.com/www.timetraveler.com/g /Users/$d/Library/Safari/Bookmarks.plist.bak > /Users/$d/Library/Safari/Bookmarks.plist
+			sed s/www.mycompany.com/www.mycompanyNEWSITE.com/g /Users/$d/Library/Safari/Bookmarks.plist.bak > /Users/$d/Library/Safari/Bookmarks.plist
 			chown $d /Users/$d/Library/Safari/Bookmarks.plist
 			chmod 600 /Users/$d/Library/Safari/Bookmarks.plist
 			unlink /Users/$d/Library/Safari/Bookmarks.plist.bak
@@ -75,7 +75,7 @@ foreach d ( * )
 		cp -f /Users/$d/Library/Preferences/com.apple.internetconfig.plist /Users/$d/Library/Preferences/com.apple.internetconfig.plist.bak
 		plutil -convert xml1 /Users/$d/Library/Preferences/com.apple.internetconfig.plist.bak
 		rm -f /Users/$d/Library/Preferences/com.apple.internetconfig.plist
-        sed s/www.timeinc.com/www.timetraveler.com/g  /Users/$d/Library/Preferences/com.apple.internetconfig.plist.bak > /Users/$d/Library/Preferences/com.apple.internetconfig.plist
+        sed s/www.mycompany.com/www.mycompanyNEWSITE.com/g  /Users/$d/Library/Preferences/com.apple.internetconfig.plist.bak > /Users/$d/Library/Preferences/com.apple.internetconfig.plist
 		chown $d /Users/$d/Library/Preferences/com.apple.internetconfig.plist
 		chmod 600 /Users/$d/Library/Preferences/com.apple.internetconfig.plist
         rm -f /Users/$d/Library/Preferences/com.apple.internetconfig.plist.bak
@@ -86,7 +86,7 @@ foreach d ( * )
 			cp -f /Users/$d/Library/Safari/Bookmarks.plist /Users/$d/Library/Safari/Bookmarks.plist.bak
 			plutil -convert xml1 /Users/$d/Library/Safari/Bookmarks.plist.bak
 			rm -f /Users/$d/Library/Safari/Bookmarks.plist
-			sed s/www.timeinc.com/www.timetraveler.com/g /Users/$d/Library/Safari/Bookmarks.plist.bak > /Users/$d/Library/Safari/Bookmarks.plist
+			sed s/www.mycompany.com/www.mycompanyNEWSITE.com/g /Users/$d/Library/Safari/Bookmarks.plist.bak > /Users/$d/Library/Safari/Bookmarks.plist
 			chown $d /Users/$d/Library/Safari/Bookmarks.plist
 			chmod 600 /Users/$d/Library/Safari/Bookmarks.plist
 			rm -f /Users/$d/Library/Safari/Bookmarks.plist.bak
@@ -110,7 +110,7 @@ end
 		
 echo Updating homepage for Default User template
 mv /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist.bak
-sed s/www.timeinc.com/www.timetraveler.com/g /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist.bak > /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist
+sed s/www.mycompany.com/www.mycompanyNEWSITE.com/g /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist.bak > /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist
 chmod 664 /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist
 rm -f /System/Library/User\ Template/English.lproj/Library/Preferences/com.apple.internetconfig.plist.bak
 echo Finished updating homepage for Default User template
