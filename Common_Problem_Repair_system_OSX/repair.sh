@@ -94,16 +94,18 @@ chmod 444 /private/var/db/.AccessibilityAPIEnabled
 # Wake from tty activity
 /usr/bin/pmset -a ttyskeepawake 1
 
+# this will enable SSH
+# the admin group is enabled
+# a user called administrator is enabled on the last line
 /Library/Management/CocoaDialog.app/Contents/MacOS/CocoaDialog bubble --title "Repair Status" --icon "hazard" --text "Fixing SSH" &
-# enable SSH
-/usr/sbin/systemsetup -setremotelogin on
-/usr/sbin/dseditgroup -o create -q com.apple.access_ssh
-/usr/sbin/dseditgroup -o edit -a timeadmin -t user com.apple.access_ssh
-/usr/sbin/dseditgroup -o edit -a dsgadministrator -t user com.apple.access_ssh
+systemsetup -setremotelogin on
+dseditgroup -o create -q com.apple.access_ssh
+dseditgroup -o edit -a admin -t group com.apple.access_ssh
+#dseditgroup -o edit -a adminuser -t user com.apple.access_ssh
 
-# Hide DSGAdmin from the login window. Nobody needs to see it.
-/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array dsgadministrator
-/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
+# Hide backdoor admin from the login window. Nobody needs to see it.
+#/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array adminuser
+#/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow Hide500Users -bool YES
 
 # Fixes if AD isn't immediately available
 /usr/libexec/PlistBuddy -c 'Add :StartupDelay integer 20' /Library/Preferences/com.apple.loginwindow.plist
