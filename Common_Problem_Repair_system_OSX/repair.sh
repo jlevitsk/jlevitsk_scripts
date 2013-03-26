@@ -204,6 +204,11 @@ rm -r "$HOME"/Library/Cookies/
 ###########################
 #
 
+# repairing launch services
+/Library/Management/CocoaDialog.app/Contents/MacOS/CocoaDialog bubble --title "Repair Status" --icon "hazard" --text "Repairing Launch Svcs" &
+su $USER -c "/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/LaunchServices.framework/Versions/A/Support/lsregister -kill -r -domain local -domain user"
+killall Finder
+
 # update the caches
 /Library/Management/CocoaDialog.app/Contents/MacOS/CocoaDialog bubble --title "Repair Status" --icon "hazard" --text "Updating Shared Cache" &
 /usr/bin/update_dyld_shared_cache
